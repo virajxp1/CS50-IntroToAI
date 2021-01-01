@@ -51,6 +51,7 @@ class Nim():
         Make the move `action` for the current player.
         `action` must be a tuple `(i, j)`.
         """
+
         pile, count = action
 
         # Check for errors
@@ -101,7 +102,10 @@ class NimAI():
         Return the Q-value for the state `state` and the action `action`.
         If no Q-value exists yet in `self.q`, return 0.
         """
-        raise NotImplementedError
+        qVal = self.q.get((tuple(state), action))
+        if qVal is None:
+            qVal = 0
+        return qVal
 
     def update_q_value(self, state, action, old_q, reward, future_rewards):
         """
@@ -118,7 +122,8 @@ class NimAI():
         `alpha` is the learning rate, and `new value estimate`
         is the sum of the current reward and estimated future rewards.
         """
-        raise NotImplementedError
+        new_value_estimate = future_rewards + reward
+        self.q[(tuple(state), action)] = old_q + self.alpha * (new_value_estimate - old_q)
 
     def best_future_reward(self, state):
         """
@@ -130,7 +135,9 @@ class NimAI():
         Q-value in `self.q`. If there are no available actions in
         `state`, return 0.
         """
-        raise NotImplementedError
+        actions = Nim.available_actions(state)
+        action, q_val = NimAI.get_max_qval(self, state, actions)
+        return q_val
 
     def choose_action(self, state, epsilon=True):
         """
@@ -142,12 +149,31 @@ class NimAI():
 
         If `epsilon` is `True`, then with probability
         `self.epsilon` choose a random available action,
+
         otherwise choose the best action available.
 
         If multiple actions have the same Q-value, any of those
         options is an acceptable return value.
         """
-        raise NotImplementedError
+        actions = list(Nim.available_actions(state))
+        if epsilon is True and random.random() < self.epsilon:
+            randomAction = random.choice(actions)
+            return randomAction
+        else:
+            action, qval = NimAI.get_max_qval(self, state, actions)
+            return action
+
+    def get_max_qval(self, state, actions):
+        bestAction = None
+        maxQ_val = -100
+        if len(actions) is 0:
+            return None, 0
+        for action in actions:
+            currentQ = NimAI.get_q_value(self, state, action)
+            if currentQ > maxQ_val:
+                bestAction = action
+                maxQ_val = currentQ
+        return bestAction, maxQ_val
 
 
 def train(n):
