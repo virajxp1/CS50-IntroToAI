@@ -5,6 +5,7 @@ import tensorflow as tf
 from sklearn.model_selection import train_test_split
 # noinspection PyUnresolvedReferences
 from tensorflow.compat.v1 import ConfigProto
+# noinspection PyUnresolvedReferences
 from tensorflow.compat.v1 import InteractiveSession
 from tensorflow.keras.layers import Conv2D
 from tensorflow.keras.layers import MaxPool2D, Flatten, Dropout
