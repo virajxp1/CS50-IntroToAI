@@ -1,0 +1,19 @@
+Loading files from artificial_intelligence.txt
+Loading files from machine_learning.txt
+Loading files from natural_language_processing.txt
+Loading files from neural_network.txt
+Loading files from probability.txt
+Loading files from python.txt
+Loading files from Steelers.txt
+Query: Who is the Steelers current head coach?
+Hired prior to the 2007 season, the Steelers current coach is Mike Tomlin.
+Query: How do neurons connect in a nueral network?
+Neurons of one layer connect only to neurons of the immediately preceding and immediately following layers.
+Query: When did Mike Tomlin win a Super Bowl?
+On February 1, 2009, Tomlin led the Steelers to their second Super Bowl of this decade, and went on to win 27–23 against the Arizona Cardinals.
+Query: When was Python 3.0 released?
+Python 3.0 was released on 3 December 2008.
+Query: Where do the Steelers play their home games?
+They currently play their home games at Heinz Field on Pittsburgh's North Side in the North Shore neighborhood, which also hosts the University of Pittsburgh Panthers.
+Query: What are the types of supervised learning?
+Types of supervised learning algorithms include Active learning , classification and regression.
